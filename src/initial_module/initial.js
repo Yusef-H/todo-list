@@ -1,4 +1,5 @@
-function initialize(){
+
+export default function initialize(){
 
     const body = document.body;
     //Side bar
@@ -36,6 +37,7 @@ function initialize(){
     todoBoard.classList.add('todo-board');
     body.appendChild(todoBoard);
 
+    
+
 }
 
-export default initialize;
