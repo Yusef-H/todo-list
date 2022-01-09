@@ -1,4 +1,15 @@
 
 .todo-task{
-    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 8px;
+    border: 2px dotted black;
+}
+.todo-title{
+    font-size: 30px;
+    margin: 0;
+}
+.todo-desc{
+
 }

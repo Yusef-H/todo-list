@@ -1,4 +1,5 @@
-
+import addTodo from '../todo_module/todoAdder.js';
+import toDoFactory from '../todo_module/todoFactory.js';
 export default function initialize(){
 
     const body = document.body;
@@ -36,6 +37,10 @@ export default function initialize(){
     const todoBoard = document.createElement('div');
     todoBoard.classList.add('todo-board');
     body.appendChild(todoBoard);
+
+    //Example task
+    const todoExample = toDoFactory("Running", "Run for 5 KM daily", "None", 10);
+    addTodo(todoExample);
 
     
 

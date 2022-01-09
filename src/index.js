@@ -6,6 +6,6 @@ import './initial_module/initial.css';
 import './todo_module/todoTasks.css';
 
 initialize();
-const todoExample = toDoFactory("Running", "Run for 5 KM daily", "None", 10);
-addTodo(todoExample);
+// const todoExample = toDoFactory("Running", "Run for 5 KM daily", "None", 10);
+// addTodo(todoExample);
 
