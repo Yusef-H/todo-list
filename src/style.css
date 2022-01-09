@@ -2,20 +2,20 @@ html{
     height: 100%;
 }
 body{
+    background-color: #e6ad45;
     display: flex;
+    justify-content: center;
     height: 100%;
     margin: 0;
 }
 /*
-  S
+  Side bar and it's content's css.
 */
 .side-bar{
     padding: 20px;
-    margin: 10px;
-    border-radius: 8px;
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 350px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    position: fixed; /*Fixed Sidebar (stay in place on scroll)*/
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
@@ -31,14 +31,11 @@ body{
 .side-bar-title{
     padding: 10px;
     font-size: 55px;
-    color: #ffffff;
+    color: #e6ad45;
     display: block;
-    border-radius: 8px;
-    border: 2px dotted rgb(255, 255, 255);
 }
 .projects-title{
     padding: 10px;
-    /* border: 2px solid green; */
     margin-top: 50px;
     align-self: flex-start;
     font-size: 45px;
@@ -56,4 +53,18 @@ body{
 .projects-list:hover{
     color: #f1f1f1;
     cursor: pointer;
+}
+
+/*
+  Todo's board next to sidebar
+*/
+.todo-board{
+    position: fixed;
+    width: 60%;
+    height: 80%;
+    left: 400px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #e6bb6d;
 }

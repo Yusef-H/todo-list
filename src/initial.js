@@ -1,4 +1,5 @@
 function initialize(){
+
     const body = document.body;
     //Side bar
     const sideBar = document.createElement('div');
@@ -15,7 +16,7 @@ function initialize(){
     projects.innerHTML = "Projects: ";
     projects.classList.add('projects-title');
 
-    //default project example
+    //default projects examples
     const defaultProject = document.createElement('div');
     defaultProject.innerHTML = "Default Project";
     defaultProject.classList.add('projects-list');
@@ -24,12 +25,16 @@ function initialize(){
     defaultProject2.innerHTML = "Default Project2";
     defaultProject2.classList.add('projects-list');
 
-    
-
     sideBar.appendChild(title);
     sideBar.appendChild(projects);
     sideBar.appendChild(defaultProject);
     sideBar.appendChild(defaultProject2);
+
+    //Todo's board
+
+    const todoBoard = document.createElement('div');
+    todoBoard.classList.add('todo-board');
+    body.appendChild(todoBoard);
 
 }
 
