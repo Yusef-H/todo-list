@@ -1,5 +1,8 @@
 import addTodo from '../todo_module/todoAdder.js';
 import toDoFactory from '../todo_module/todoFactory.js';
+import addProject from '../todo_module/projectAdder.js';
+import projectFactory from '../todo_module/projectFactory.js';
+
 export default function initialize(){
 
     const body = document.body;
@@ -18,30 +21,28 @@ export default function initialize(){
     projects.innerHTML = "Projects: ";
     projects.classList.add('projects-title');
 
-    //default projects examples
-    const defaultProject = document.createElement('div');
-    defaultProject.innerHTML = "Default Project";
-    defaultProject.classList.add('projects-list');
-
-    const defaultProject2 = document.createElement('div');
-    defaultProject2.innerHTML = "Default Project2";
-    defaultProject2.classList.add('projects-list');
-
-    sideBar.appendChild(title);
-    sideBar.appendChild(projects);
-    sideBar.appendChild(defaultProject);
-    sideBar.appendChild(defaultProject2);
-
     //Todo's board
-
     const todoBoard = document.createElement('div');
     todoBoard.classList.add('todo-board');
     body.appendChild(todoBoard);
 
+    sideBar.appendChild(title);
+    sideBar.appendChild(projects);
+
+    //default projects examples
+    const defaultProject = projectFactory("Default Project");
+    addProject(defaultProject);
+
+    const defaultProject2 = projectFactory("Proj2");
+    addProject(defaultProject2);
+
     //Example task
     const todoExample = toDoFactory("Running", "Run for 5 KM daily", "None", 10);
-    addTodo(todoExample);
+    addTodo(todoExample, defaultProject.todoArray); 
 
+    const ex2 = toDoFactory("Swimming", "Swim for 30 mins in the morning", "None", 10);
+    addTodo(ex2, defaultProject2.todoArray);
+    
     
 
 }

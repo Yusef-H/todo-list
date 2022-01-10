@@ -1,7 +1,7 @@
-
-export default function addTodo(todo) {
-    const todoBoard = document.querySelector('.todo-board');
-    console.log('aaaaaaaaa');
+/**
+ * Function that adds a new todo task to the project's todo array.
+ */
+export default function addTodo(todo, projectTodoArray) {
     const todoTask = document.createElement('div');
     todoTask.classList.add('todo-task')
     const todoTaskTitle = document.createElement('h4');
@@ -10,12 +10,7 @@ export default function addTodo(todo) {
     const todoDescription = document.createElement('p');
     todoDescription.innerHTML = todo.description;
     todoDescription.classList.add('todo-desc');
-
     todoTask.appendChild(todoTaskTitle);
     todoTask.appendChild(todoDescription);
-
-    todoBoard.appendChild(todoTask);
-    
-
-
+    projectTodoArray.push(todoTask);
 }
