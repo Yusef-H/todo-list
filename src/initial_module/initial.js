@@ -1,6 +1,5 @@
-import addTodo from '../todo_module/todoAdder.js';
+import domHandler from '../todo_module/domHandler.js';
 import toDoFactory from '../todo_module/todoFactory.js';
-import addProject from '../todo_module/projectAdder.js';
 import projectFactory from '../todo_module/projectFactory.js';
 
 export default function initialize(){
@@ -31,17 +30,17 @@ export default function initialize(){
 
     //default projects examples
     const defaultProject = projectFactory("Default Project");
-    addProject(defaultProject);
+    domHandler.addProject(defaultProject);
 
     const defaultProject2 = projectFactory("Proj2");
-    addProject(defaultProject2);
+    domHandler.addProject(defaultProject2);
 
     //Example task
     const todoExample = toDoFactory("Running", "Run for 5 KM daily", "None", 10);
-    addTodo(todoExample, defaultProject.todoArray); 
+    domHandler.addTodo(todoExample, defaultProject.todoArray); 
 
     const ex2 = toDoFactory("Swimming", "Swim for 30 mins in the morning", "None", 10);
-    addTodo(ex2, defaultProject2.todoArray);
+    domHandler.addTodo(ex2, defaultProject2.todoArray);
     
     
 
