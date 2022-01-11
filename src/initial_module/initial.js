@@ -1,6 +1,6 @@
 import domHandler from '../todo_module/domHandler.js';
-import toDoFactory from '../todo_module/todoFactory.js';
-import projectFactory from '../todo_module/projectFactory.js';
+import toDoFactory from '../todo_module/Factories/todoFactory.js';
+import projectFactory from '../todo_module/Factories/projectFactory.js';
 
 export default function initialize(){
 
@@ -25,8 +25,24 @@ export default function initialize(){
     todoBoard.classList.add('todo-board');
     body.appendChild(todoBoard);
 
+    //Add a new Project Button
+    const addProjectButton = document.createElement('button');
+    addProjectButton.innerHTML = "Add Project";
+    addProjectButton.classList.add('add-project-button');
+
+    //Add a new todo task Button
+    const addTaskButton = document.createElement('button');
+    addTaskButton.innerHTML = "Add Task";
+    addTaskButton.classList.add('add-task-button');
+
+    const addButtons = document.createElement('div');
+    addButtons.classList.add('add-buttons');
+    addButtons.appendChild(addProjectButton);
+    addButtons.appendChild(addTaskButton);
+
     sideBar.appendChild(title);
     sideBar.appendChild(projects);
+    sideBar.appendChild(addButtons);
 
     //default projects examples
     const defaultProject = projectFactory("Default Project");

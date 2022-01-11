@@ -6,13 +6,13 @@
     margin: 20px;
     border-radius: 8px;
     padding: 20px;
-    height: 80%; /* Full-height: remove this if you want "auto" height */
+    height: 80%; 
     width: 350px; /* Set the width of the sidebar */
     position: fixed; /*Fixed Sidebar (stay in place on scroll)*/
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #111; /* Black */
+    background-color: #111; 
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
 
@@ -33,7 +33,31 @@
     align-self: flex-start;
     font-size: 45px;
     color: #e6ad45;
-    margin-bottom: 50px;
+}
+.add-buttons{
+    display: flex;
+    width: 260px;
+    justify-content: space-between;
+    /* border: 2px solid red; */
+}
+.add-task-button, .add-project-button{
+    border-radius: 8px;
+    background-color: black;
+    color: #e6ad45;
+    height: 35px;
+    border: 2px solid #e6ad45;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+}
+
+.add-project-button:hover{
+    background-color: #818181;
+}
+.add-task-button:hover{
+    background-color: #818181;
 }
 .projects-list{
     align-self: flex-start;
@@ -60,4 +84,5 @@
     padding: 20px;
     border-radius: 8px;
     background-color: #e6bb6d;
+    
 }

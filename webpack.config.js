@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
-    todo: './src/todo_module/todoFactory.js',
+    todo: './src/todo_module/Factories/todoFactory.js',
     initial: './src/initial_module/initial.js',
   },
   devtool: 'inline-source-map',
