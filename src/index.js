@@ -16,23 +16,24 @@ projects.forEach((project)=>{
     project.addEventListener('click', function projectListener(e){
         domHandler.clearBoard();
         domHandler.showProjectTasks(project);
-        const submitTaskButton = document.getElementById('submit');
-        submitTaskButton.addEventListener('click', function submitter(){
-            
-            const taskTitle = document.querySelector('.task-title input').value;
-            const taskDescription = document.querySelector('.task-description textarea').value;
-            const newTodo = toDoFactory(taskTitle, taskDescription, "o", 10);
-            const taskModalContainer = document.querySelector('.task-modal-container');
-            domHandler.addTodo(newTodo, project.todoArray);
-            domHandler.clearBoard();
-            domHandler.showProjectTasks(project);
-            taskModalContainer.classList.remove('show');
-
-            document.querySelector('.task-title input').value = "";
-            document.querySelector('.task-description textarea').value = "";
-        });
+    
         
     })
+    const submitTaskButton = document.getElementById('submit');
+    submitTaskButton.addEventListener('click', function submitter(){
+        
+        console.log("SUBMIT");
+        const taskTitle = document.querySelector('.task-title input').value;
+        const taskDescription = document.querySelector('.task-description textarea').value;
+        const newTodo = toDoFactory(taskTitle, taskDescription, "o", 10);
+        const taskModalContainer = document.querySelector('.task-modal-container');
+        domHandler.addTodo(newTodo, project.todoArray);
+        domHandler.clearBoard();
+        domHandler.showProjectTasks(project);
+        taskModalContainer.classList.remove('show');
+        document.querySelector('.task-title input').value = "";
+        document.querySelector('.task-description textarea').value = "";
+    });
 })
 
 

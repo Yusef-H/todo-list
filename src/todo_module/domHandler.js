@@ -4,6 +4,8 @@ import toDoFactory from './Factories/todoFactory';
  * Function that adds a new todo task to the project's todo array.
  */
 function addTodo(todo, projectTodoArray) {
+    if(todo.title == "" || todo.description == "")
+        return;
     console.log(todo);
     const todoTask = document.createElement('div');
     todoTask.classList.add('todo-task')
