@@ -29,11 +29,13 @@ export default function initialize(){
     const addProjectButton = document.createElement('button');
     addProjectButton.innerHTML = "Add Project";
     addProjectButton.classList.add('add-project-button');
+    addProjectButton.id = "open-project-modal";
 
     //Add a new todo task Button
     const addTaskButton = document.createElement('button');
     addTaskButton.innerHTML = "Add Task";
     addTaskButton.classList.add('add-task-button');
+    addTaskButton.id = "open-task-modal";
 
     const addButtons = document.createElement('div');
     addButtons.classList.add('add-buttons');
@@ -43,6 +45,10 @@ export default function initialize(){
     sideBar.appendChild(title);
     sideBar.appendChild(projects);
     sideBar.appendChild(addButtons);
+
+    
+
+
 
     //default projects examples
     const defaultProject = projectFactory("Default Project");
@@ -54,6 +60,12 @@ export default function initialize(){
     //Example task
     const todoExample = toDoFactory("Running", "Run for 5 KM daily", "None", 10);
     domHandler.addTodo(todoExample, defaultProject.todoArray); 
+
+    domHandler.showProjectTasks(defaultProject);
+    //Start our modals event listeners
+    domHandler.modalsStart(defaultProject);
+
+    
 
     const ex2 = toDoFactory("Swimming", "Swim for 30 mins in the morning", "None", 10);
     domHandler.addTodo(ex2, defaultProject2.todoArray);
