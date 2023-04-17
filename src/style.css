@@ -18,7 +18,7 @@ li{
 }
 
 .title{
-
+    font-size: 50px;
 }
 
 .sidebar-collapse-button {
@@ -61,7 +61,7 @@ li{
 .sidebar-content li:not(:last-child){
     width: 80%;
     padding: 10px;
-    font-size: clamp(30px, 6vmin, 50px);
+    font-size: clamp(30px, 6vmin, 40px);
     border-radius: 8px;
     background-color: #fff;
     cursor: pointer;
