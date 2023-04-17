@@ -17,6 +17,25 @@ li{
     justify-content: space-between;
 }
 
+.title{
+
+}
+
+.sidebar-collapse-button {
+    display: none;
+    height: 30px;
+    width: 50px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f0f0f0;
+    color: #fff;
+    cursor: pointer;
+}
+.sidebar-collapse-button:hover {
+    background-color: #fff;
+}
+
 .content{
     display: flex;
 }
@@ -35,31 +54,33 @@ li{
 .sidebar-content{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 30px;
 }
 
-.sidebar-content li{
+.sidebar-content li:not(:last-child){
+    width: 80%;
     padding: 10px;
+    font-size: clamp(30px, 6vmin, 50px);
+    border-radius: 8px;
     background-color: #fff;
     cursor: pointer;
+    text-align: center;
 }
 
-.sidebar-content li:hover {
+.sidebar-content li:hover:not(:last-child) {
     background-color: #0069d9;
     color: #fff;
 }
 
-
-.sidebar-collapse-button {
-    display: none;
-    height: 50px;
-    width: 40px;
-    border: none;
-    background-color: #2196F3;
-    color: #fff;
-    cursor: pointer;
+.sidebar-projects-title{
+    align-self: flex-start;
+    color: #000;
+    font-size: clamp(50px, 8vmin, 50px);
 }
+
+
+
 
 .board {
     flex: 1;
@@ -71,19 +92,23 @@ li{
 
   
    
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
     /* Hide sidebar by default */
     .sidebar {
-      transform: translateX(-100%);
+        transform: translateX(-100%);
     }
     
     .sidebar-collapse-button {
-      display: block;
+        display: block;
     }
     
-    .sidebar--show {
-      transform: translateX(0);
+    .sidebar-show {
+        transform: translateX(0);
     }
-  }
+
+    .board{
+        margin-left: -220px;
+    }
+}
   
   
