@@ -89,6 +89,32 @@ li{
 }
 
 
+.todo-list-container{
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 10px;
+}
+.todo-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+.todo-container div{
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}
+
+
 
   
    
