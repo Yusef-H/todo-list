@@ -73,11 +73,36 @@ li{
     color: #fff;
 }
 
+.sidebar-projects{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .sidebar-projects-title{
     align-self: flex-start;
-    color: #000;
+    color: #0069d9;
     font-size: clamp(50px, 8vmin, 50px);
 }
+
+.sidebar-user-projects{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.sidebar-user-projects button{
+    font-size: clamp(10px, 3vmin, 20px);
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+}
+.sidebar-user-projects button:hover{
+    background-color: #60a8f5;
+}
+
 
 
 
