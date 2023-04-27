@@ -90,7 +90,6 @@ li{
 
 
 .todo-list-container{
-    border: 2px solid blue;
     display: flex;
     flex-direction: column;
     
@@ -101,13 +100,16 @@ li{
     align-items: center;
     justify-content: space-between;
     padding: 5px;
-    border: 1px solid red;
+    border: 1px solid gray;
+    border-radius: 8px;
 }
 
 .todo-container div{
     display: flex;
     align-items: center;
 }
+
+
 
 input[type="checkbox"]{
     width: 20px;

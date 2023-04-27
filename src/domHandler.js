@@ -2,10 +2,22 @@ import { format} from 'date-fns'
 const sidebarButton = document.querySelector('.sidebar-collapse-button');
 const sidebar = document.querySelector('.sidebar');
 const todoListContainer = document.querySelector('.todo-list-container');
+const projectsContainer = document.querySelector('.sidebar-user-projects');
 
 sidebarButton.addEventListener('click', () => {
     sidebar.classList.toggle('sidebar-show');
 });
+
+function projectDisplayHandler(project){
+    const projectButton = document.createElement('button');
+    projectButton.innerHTML = project.projectName;
+    projectButton.addEventListener('click', () => {
+        clearTodoListContainer();
+        displayProjectTodos(project);
+    })
+    projectsContainer.appendChild(projectButton);
+
+}
 
 
 function displayProjectTodos(project){
@@ -18,6 +30,7 @@ function displayProjectTodos(project){
 function displayTodo(todo){
     const todoContainer = document.createElement('div');
     const leftDiv = document.createElement('div');
+    
     const rightDiv = document.createElement('div');
 
     const checkBox = document.createElement("input");
@@ -43,10 +56,17 @@ function displayTodo(todo){
     todoListContainer.appendChild(todoContainer);
 }
 
+function clearTodoListContainer(){
+    while(todoListContainer.hasChildNodes()){
+        todoListContainer.removeChild(todoListContainer.firstChild);
+    }
+    
+}
+
 
 export {
     displayProjectTodos,
-    displayTodo
+    projectDisplayHandler
 };
 
 
