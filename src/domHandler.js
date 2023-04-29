@@ -1,4 +1,6 @@
 import { format} from 'date-fns'
+import {Project} from './project.js';
+
 const sidebarButton = document.querySelector('.sidebar-collapse-button');
 const sidebar = document.querySelector('.sidebar');
 const todoListContainer = document.querySelector('.todo-list-container');
@@ -7,6 +9,7 @@ const projectsContainer = document.querySelector('.sidebar-user-projects');
 sidebarButton.addEventListener('click', () => {
     sidebar.classList.toggle('sidebar-show');
 });
+
 
 function projectDisplayHandler(project){
     const projectButton = document.createElement('button');
@@ -62,6 +65,36 @@ function clearTodoListContainer(){
     }
     
 }
+
+function handleModal(){
+    const addTodoButton = document.querySelector('.add-todo-container button');
+    const cancelButton = document.querySelector('.cancel-btn');
+    const form = document.querySelector('form');
+    const modal = document.querySelector('.modal');
+    addTodoButton.addEventListener('click', () => {
+        console.log(modal);
+        modal.classList.add('visible');
+    });
+  
+    cancelButton.addEventListener('click', () => {
+        modal.classList.remove('visible');
+    });
+  
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        /*Continue here to take input and create todo and classify
+          to which project it belongs.
+          create set of projects in index too.*/ 
+
+        
+
+        modal.classList.remove('visible');
+    });
+};
+
+handleModal();
+
 
 
 export {

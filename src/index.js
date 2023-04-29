@@ -1,11 +1,11 @@
 import './css/headerSidebar.css';
 import './css/todoBoard.css'
+import './css/modal.css'
 import './domHandler.js';
 import {Project} from './project.js';
 import {TodoFactory} from './todo.js';
 import { compareAsc, format } from 'date-fns';
 import {projectDisplayHandler} from './domHandler.js';
-
 
 const exProject = Project("Example");
 const todo1 = TodoFactory("example1", "ex1", new Date(2014, 1, 11));

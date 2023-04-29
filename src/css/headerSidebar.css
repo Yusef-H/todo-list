@@ -106,44 +106,6 @@ li{
 
 
 
-
-
-.board {
-    flex: 1;
-    background-color: #fff;
-    padding: 20px;
-}
-
-
-.todo-list-container{
-    display: flex;
-    flex-direction: column;
-    
-    gap: 10px;
-}
-.todo-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    border: 1px solid gray;
-    border-radius: 8px;
-}
-
-.todo-container div{
-    display: flex;
-    align-items: center;
-}
-
-
-
-input[type="checkbox"]{
-    width: 20px;
-    height: 20px;
-}
-
-
-
   
    
 @media (max-width: 767px) {
