@@ -65,7 +65,6 @@ function clearTodoListContainer(){
 
 
 export {
-    displayProjectTodos,
     projectDisplayHandler
 };
 

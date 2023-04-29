@@ -89,7 +89,7 @@ li{
     margin-top: 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 5px;
 }
 .sidebar-user-projects button{
@@ -101,6 +101,7 @@ li{
 }
 .sidebar-user-projects button:hover{
     background-color: #60a8f5;
+    cursor: pointer;
 }
 
 
