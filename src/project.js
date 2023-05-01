@@ -1,4 +1,4 @@
-const projects = new Set();
+const projects = [];
 const projectNames = new Set();
 
 function ProjectFactory(projectName){
@@ -20,11 +20,21 @@ function ProjectFactory(projectName){
 }
 
 function addProject(project){
-    projects.add(project);
+    projects.push(project);
 }
 
 function getProjects(){
     return projects;
+}
+
+function getProjectByName(name){
+    let projectToReturn;
+    projects.forEach((project) => {
+        if(project.projectName === name){
+            projectToReturn = project;
+        }
+    })
+    return projectToReturn;
 }
 
 function doesProjectNameExist(projectName){
@@ -34,4 +44,5 @@ function doesProjectNameExist(projectName){
 export {ProjectFactory, 
         addProject, 
         getProjects,
-        doesProjectNameExist};
+        doesProjectNameExist,
+        getProjectByName};

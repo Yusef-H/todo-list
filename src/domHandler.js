@@ -1,5 +1,7 @@
 import { format} from 'date-fns'
-import {ProjectFactory, doesProjectNameExist, addProject, getProjects} from './project.js';
+import {ProjectFactory, doesProjectNameExist, 
+        addProject, getProjects, getProjectByName} from './project.js';
+import { TodoFactory } from './todo.js';
 
 
 const sidebarButton = document.querySelector('.sidebar-collapse-button');
@@ -90,9 +92,6 @@ function handleModal(){
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        /*Continue here to take input and create todo and classify
-          to which project it belongs.
-          create set of projects in index too.*/ 
         handleInput();
         
 
@@ -104,13 +103,24 @@ function handleInput(){
     const todoTitleInput = document.getElementById('title');
     const projectTitleInput = document.getElementById('project');
 
+    /**next here add more values to todo like date
+     * desc etc..
+     */
+
+    let newTodo = TodoFactory(todoTitleInput.value, 'desc', new Date(2019,1,11));
     if(!doesProjectNameExist(projectTitleInput.value)){
         let newProject = ProjectFactory(projectTitleInput.value);
+        newProject.addTodo(newTodo);
         addProject(newProject);
-        console.log(getProjects());
-        renderProjects(getProjects());
-
     }
+    /** Project already exists */
+    else{
+        let project = getProjectByName(projectTitleInput.value);
+        console.log(project);
+        project.addTodo(newTodo);
+    }
+
+    renderProjects(getProjects());
 }
 
 handleModal();
