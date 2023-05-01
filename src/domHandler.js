@@ -1,5 +1,6 @@
 import { format} from 'date-fns'
-import {Project} from './project.js';
+import {ProjectFactory, doesProjectNameExist, addProject, getProjects} from './project.js';
+
 
 const sidebarButton = document.querySelector('.sidebar-collapse-button');
 const sidebar = document.querySelector('.sidebar');
@@ -10,12 +11,18 @@ sidebarButton.addEventListener('click', () => {
     sidebar.classList.toggle('sidebar-show');
 });
 
+function renderProjects(projects){
+    clearContainer(projectsContainer);
+    projects.forEach((project) => {
+        projectDisplayHandler(project);
+    })
+}
 
 function projectDisplayHandler(project){
     const projectButton = document.createElement('button');
     projectButton.innerHTML = project.projectName;
     projectButton.addEventListener('click', () => {
-        clearTodoListContainer();
+        clearContainer(todoListContainer);
         displayProjectTodos(project);
     })
     projectsContainer.appendChild(projectButton);
@@ -59,9 +66,9 @@ function displayTodo(todo){
     todoListContainer.appendChild(todoContainer);
 }
 
-function clearTodoListContainer(){
-    while(todoListContainer.hasChildNodes()){
-        todoListContainer.removeChild(todoListContainer.firstChild);
+function clearContainer(container){
+    while(container.hasChildNodes()){
+        container.removeChild(container.firstChild);
     }
     
 }
@@ -86,19 +93,32 @@ function handleModal(){
         /*Continue here to take input and create todo and classify
           to which project it belongs.
           create set of projects in index too.*/ 
-
+        handleInput();
         
 
         modal.classList.remove('visible');
     });
 };
 
+function handleInput(){
+    const todoTitleInput = document.getElementById('title');
+    const projectTitleInput = document.getElementById('project');
+
+    if(!doesProjectNameExist(projectTitleInput.value)){
+        let newProject = ProjectFactory(projectTitleInput.value);
+        addProject(newProject);
+        console.log(getProjects());
+        renderProjects(getProjects());
+
+    }
+}
+
 handleModal();
 
 
 
 export {
-    projectDisplayHandler
+    renderProjects
 };
 
 
