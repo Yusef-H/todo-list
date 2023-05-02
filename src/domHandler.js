@@ -33,7 +33,7 @@ function projectDisplayHandler(project){
 
 
 function displayProjectTodos(project){
-    
+    clearContainer(todoListContainer);
     project.todoList.forEach(todo => {
         displayTodo(todo);
     });
@@ -56,8 +56,8 @@ function displayTodo(todo){
     title.innerHTML = todo.title;
     leftDiv.appendChild(title);
 
-    
-    date.innerHTML = format(todo.dueDate, "yyyy/MM/dd");
+    console.log(todo.dueDate);
+    date.innerHTML = format(todo.dueDate, "yyyy-MM-dd");
     rightDiv.appendChild(date);
 
     todoContainer.appendChild(leftDiv);
@@ -81,7 +81,6 @@ function handleModal(){
     const form = document.querySelector('form');
     const modal = document.querySelector('.modal');
     addTodoButton.addEventListener('click', () => {
-        console.log(modal);
         modal.classList.add('visible');
     });
   
@@ -103,24 +102,21 @@ function handleInput(){
     const todoTitleInput = document.getElementById('title');
     const projectTitleInput = document.getElementById('project');
     const dateInput = document.getElementById('date');
-    const descInput = document.getElementById('todo-desc');
-    console.log(dateInput.value);
-
-    let newTodo = TodoFactory(todoTitleInput.value, descInput.value,
-                             new Date(dateInput.value));
+    let newTodo = TodoFactory(todoTitleInput.value, new Date(dateInput.value));
+    let project;
     if(!doesProjectNameExist(projectTitleInput.value)){
-        let newProject = ProjectFactory(projectTitleInput.value);
-        newProject.addTodo(newTodo);
-        addProject(newProject);
+        project = ProjectFactory(projectTitleInput.value);
+        project.addTodo(newTodo);
+        addProject(project);
     }
     /** Project already exists */
     else{
-        let project = getProjectByName(projectTitleInput.value);
-        console.log(project);
+        project = getProjectByName(projectTitleInput.value);
         project.addTodo(newTodo);
     }
 
     renderProjects(getProjects());
+    displayProjectTodos(project);
 }
 
 handleModal();

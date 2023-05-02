@@ -112,6 +112,7 @@ li{
     /* Hide sidebar by default */
     .sidebar {
         transform: translateX(-100%);
+        position: absolute;
     }
     
     .sidebar-collapse-button {
@@ -122,9 +123,6 @@ li{
         transform: translateX(0);
     }
 
-    .board{
-        margin-left: -220px;
-    }
 }
   
   

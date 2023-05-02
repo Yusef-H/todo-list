@@ -1,8 +1,7 @@
-function TodoFactory(title, desc, dueDate){
+function TodoFactory(title, dueDate){
 
     return {
         title,
-        desc,
         dueDate}
 }
 

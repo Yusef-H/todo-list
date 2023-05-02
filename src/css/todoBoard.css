@@ -8,8 +8,8 @@
 .todo-list-container{
     display: flex;
     flex-direction: column;
-    
     gap: 10px;
+    align-self: center;
 }
 .todo-container{
     display: flex;
