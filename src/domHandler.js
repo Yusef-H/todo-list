@@ -102,12 +102,12 @@ function handleModal(){
 function handleInput(){
     const todoTitleInput = document.getElementById('title');
     const projectTitleInput = document.getElementById('project');
+    const dateInput = document.getElementById('date');
+    const descInput = document.getElementById('todo-desc');
+    console.log(dateInput.value);
 
-    /**next here add more values to todo like date
-     * desc etc..
-     */
-
-    let newTodo = TodoFactory(todoTitleInput.value, 'desc', new Date(2019,1,11));
+    let newTodo = TodoFactory(todoTitleInput.value, descInput.value,
+                             new Date(dateInput.value));
     if(!doesProjectNameExist(projectTitleInput.value)){
         let newProject = ProjectFactory(projectTitleInput.value);
         newProject.addTodo(newTodo);

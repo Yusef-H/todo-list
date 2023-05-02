@@ -45,11 +45,13 @@ form > fieldset{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 25px;
 }
-fieldset > input{
+fieldset label{
+    width: 40%;
+}
+fieldset input, textarea{
     margin-left: 10px;
-    height: clamp(10px, 2vh, 20px);
+    flex: 1;
 }
 
 .buttons-container{

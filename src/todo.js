@@ -1,10 +1,9 @@
-function TodoFactory(title, desc, dueDate, priority){
+function TodoFactory(title, desc, dueDate){
 
     return {
         title,
         desc,
-        dueDate,
-        priority}
+        dueDate}
 }
 
 export {TodoFactory};
