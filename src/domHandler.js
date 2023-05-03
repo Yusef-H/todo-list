@@ -23,11 +23,9 @@ function renderProjects(projects){
 function projectHandler(project){
     const projectButton = document.createElement('button');
     projectButton.innerHTML = project.projectName;
-    clearContainer(todoListContainer);
     handleProjectTodos(project);
-    
+
     projectButton.addEventListener('click', () => {
-        clearContainer(todoListContainer);
         handleProjectTodos(project);
     })
     projectsContainer.appendChild(projectButton);
@@ -82,7 +80,7 @@ function handleDeleteEvent(deleteButton, project){
     deleteButton.addEventListener('click', (e) => {
         const todoTitle = e.path[2].firstChild.lastChild.innerHTML;
         project.deleteTodo(todoTitle);
-        renderProjects(getProjects());
+        handleProjectTodos(project);
     })
     
 }
@@ -109,10 +107,7 @@ function handleModal(){
   
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-
         handleInput();
-        
-
         modal.classList.remove('visible');
     });
 };

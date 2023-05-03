@@ -12,7 +12,8 @@ function ProjectFactory(projectName){
     function deleteTodo(todoTitle){
         todoList.forEach((todo) => {
             if(todo.title === todoTitle){
-                todoList.splice(todoList.indexOf(todo), 1);
+                let idx = todoList.indexOf(todo);
+                this.todoList.splice(idx, 1);
             }
         })
     }
