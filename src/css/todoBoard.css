@@ -23,11 +23,29 @@
 .todo-container div{
     display: flex;
     align-items: center;
+    gap: 5px;
 }
 
 input[type="checkbox"]{
     width: 20px;
     height: 20px;
+}
+
+.del-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    color: red;
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    border-radius: 8px;
+}
+
+.del-btn:hover{
+    background-color: #0069d9;
+    cursor: pointer;
 }
 
 .add-todo-container{

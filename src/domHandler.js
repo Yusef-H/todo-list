@@ -16,56 +16,75 @@ sidebarButton.addEventListener('click', () => {
 function renderProjects(projects){
     clearContainer(projectsContainer);
     projects.forEach((project) => {
-        projectDisplayHandler(project);
+        projectHandler(project);
     })
 }
 
-function projectDisplayHandler(project){
+function projectHandler(project){
     const projectButton = document.createElement('button');
     projectButton.innerHTML = project.projectName;
+    clearContainer(todoListContainer);
+    handleProjectTodos(project);
+    
     projectButton.addEventListener('click', () => {
         clearContainer(todoListContainer);
-        displayProjectTodos(project);
+        handleProjectTodos(project);
     })
     projectsContainer.appendChild(projectButton);
 
 }
 
 
-function displayProjectTodos(project){
+function handleProjectTodos(project){
     clearContainer(todoListContainer);
     project.todoList.forEach(todo => {
-        displayTodo(todo);
+        handleTodo(todo, project);
     });
 }
 
-function displayTodo(todo){
+function handleTodo(todo, project){
     const todoContainer = document.createElement('div');
     const leftDiv = document.createElement('div');
-    
     const rightDiv = document.createElement('div');
-
     const checkBox = document.createElement("input");
     const title = document.createElement("h3");
     const date = document.createElement("h3");
     
+    
 
     checkBox.setAttribute("type", "checkbox");
-    leftDiv.appendChild(checkBox);
-
     title.innerHTML = todo.title;
+    leftDiv.appendChild(checkBox);
     leftDiv.appendChild(title);
 
-    console.log(todo.dueDate);
+    const deleteButton = createDeleteButton();
+    handleDeleteEvent(deleteButton, project);
     date.innerHTML = format(todo.dueDate, "yyyy-MM-dd");
     rightDiv.appendChild(date);
+    rightDiv.appendChild(deleteButton);
 
     todoContainer.appendChild(leftDiv);
     todoContainer.appendChild(rightDiv);
 
-
     todoContainer.classList.add('todo-container');
     todoListContainer.appendChild(todoContainer);
+}
+
+function createDeleteButton(){
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('del-btn');
+    deleteButton.innerHTML = 'X';
+    deleteButton.title = 'Delete Todo';
+    return deleteButton;
+}
+
+function handleDeleteEvent(deleteButton, project){
+    deleteButton.addEventListener('click', (e) => {
+        const todoTitle = e.path[2].firstChild.lastChild.innerHTML;
+        project.deleteTodo(todoTitle);
+        renderProjects(getProjects());
+    })
+    
 }
 
 function clearContainer(container){
@@ -116,7 +135,7 @@ function handleInput(){
     }
 
     renderProjects(getProjects());
-    displayProjectTodos(project);
+    handleProjectTodos(project);
 }
 
 handleModal();

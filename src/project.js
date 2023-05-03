@@ -9,13 +9,22 @@ function ProjectFactory(projectName){
         todoList.push(todo);
     }
 
+    function deleteTodo(todoTitle){
+        todoList.forEach((todo) => {
+            if(todo.title === todoTitle){
+                todoList.splice(todoList.indexOf(todo), 1);
+            }
+        })
+    }
+
     projectNames.add(projectName);
 
     return {
         projectName,
         numOfTodos,
         todoList,
-        addTodo
+        addTodo,
+        deleteTodo
     }
 }
 
