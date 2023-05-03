@@ -82,6 +82,12 @@ function handleDeleteEvent(deleteButton, project){
         project.deleteTodo(todoTitle);
         handleProjectTodos(project);
     })
+
+    deleteButton.addEventListener('touchstart', (e) => {
+        const todoTitle = e.path[2].firstChild.lastChild.innerHTML;
+        project.deleteTodo(todoTitle);
+        handleProjectTodos(project);
+    })
     
 }
 
