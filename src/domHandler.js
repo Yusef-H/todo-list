@@ -77,11 +77,19 @@ function createDeleteButton(){
 }
 
 function handleDeleteEvent(deleteButton, project){
-    deleteButton.addEventListener('click', (e) => {
-        const todoTitle = e.path[2].firstChild.lastChild.innerHTML;
-        project.deleteTodo(todoTitle);
-        handleProjectTodos(project);
+    // deleteButton.addEventListener('click', (e) => {
+    //     const todoTitle = e.path[2].firstChild.lastChild.innerHTML;
+    //     project.deleteTodo(todoTitle);
+    //     handleProjectTodos(project);
+    // })
+    ['click', 'touchstart'].forEach((event) => {
+        deleteButton.addEventListener(event, (e) => {
+            const todoTitle = e.path[2].firstChild.lastChild.innerHTML;
+            project.deleteTodo(todoTitle);
+            handleProjectTodos(project);
+        })
     })
+ 
 
 }
 
