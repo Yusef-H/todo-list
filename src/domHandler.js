@@ -3,15 +3,21 @@ import {ProjectFactory, doesProjectNameExist,
         addProject, getProjects, getProjectByName} from './project.js';
 import { TodoFactory } from './todo.js';
 
-
+const homeButton = document.querySelector('.sidebar-home');
 const sidebarButton = document.querySelector('.sidebar-collapse-button');
 const sidebar = document.querySelector('.sidebar');
 const todoListContainer = document.querySelector('.todo-list-container');
 const projectsContainer = document.querySelector('.sidebar-user-projects');
 
-sidebarButton.addEventListener('click', () => {
-    sidebar.classList.toggle('sidebar-show');
-});
+handleButtons();
+function handleButtons(){
+    sidebarButton.addEventListener('click', () => {
+        sidebar.classList.toggle('sidebar-show');
+    });
+    homeButton.addEventListener('click', () => {
+        /* add display all todos functionality */
+    })
+}
 
 function renderProjects(projects){
     clearContainer(projectsContainer);
@@ -42,10 +48,12 @@ function handleProjectTodos(project){
 
 function handleTodo(todo, project){
     const todoContainer = document.createElement('div');
+    todoContainer.classList.add('todo-container');
     const leftDiv = document.createElement('div');
     const rightDiv = document.createElement('div');
     const checkBox = document.createElement("input");
     const title = document.createElement("h3");
+    title.classList.add('todo-title');
     const date = document.createElement("h3");
     
     
@@ -63,8 +71,6 @@ function handleTodo(todo, project){
 
     todoContainer.appendChild(leftDiv);
     todoContainer.appendChild(rightDiv);
-
-    todoContainer.classList.add('todo-container');
     todoListContainer.appendChild(todoContainer);
 }
 
@@ -76,18 +82,13 @@ function createDeleteButton(){
     return deleteButton;
 }
 
-function handleDeleteEvent(deleteButton, project){
-    
-    ['click', 'touchstart'].forEach((event) => {
-        deleteButton.addEventListener(event, (e) => {
+function handleDeleteEvent(deleteButton, project){  
+        deleteButton.addEventListener('click', (e) => {
             e.preventDefault();
-            const todoTitle =deleteButton.parentElement.parentElement.firstChild.lastChild.innerHTML;
+            const todoTitle = deleteButton.closest(".todo-container").querySelector(".todo-title").innerHTML;
             project.deleteTodo(todoTitle);
             handleProjectTodos(project);
         })
-    })
- 
-
 }
 
 function clearContainer(container){

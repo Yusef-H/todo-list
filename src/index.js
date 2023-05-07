@@ -9,15 +9,17 @@ import {projectDisplayHandler, renderProjects} from './domHandler.js';
 
 
 function createExamples(){
-    const exProject = ProjectFactory("Example");
-    const todo1 = TodoFactory("example1", new Date(2014, 1, 11));
-    const todo2 = TodoFactory("example2", new Date(2014, 1, 11));
+    const exProject = ProjectFactory("House");
+    const todo1 = TodoFactory("Clean Bedsheets", new Date(2023, 2, 5));
+    const todo2 = TodoFactory("Organize closet", new Date(2023, 2, 5));
+    const todo3 = TodoFactory("Buy a new fridge", new Date(2023, 5, 6));
     exProject.addTodo(todo1);
     exProject.addTodo(todo2);
+    exProject.addTodo(todo3);
 
-    const ex2Project = ProjectFactory("Example2");
-    const todo12 = TodoFactory("2222222", new Date(2014, 1, 11));
-    const todo22 = TodoFactory("22222", new Date(2014, 1, 11));
+    const ex2Project = ProjectFactory("Studying");
+    const todo12 = TodoFactory("Operating Systems HW", new Date(2023, 13, 5));
+    const todo22 = TodoFactory("Finish todo Project", new Date(2023, 15, 5));
     ex2Project.addTodo(todo12);
     ex2Project.addTodo(todo22);
     addProject(ex2Project);
