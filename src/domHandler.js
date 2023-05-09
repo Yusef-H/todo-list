@@ -1,9 +1,11 @@
-import { format} from 'date-fns'
+import {format, isToday, isWithinInterval, subDays} from 'date-fns'
 import {ProjectFactory, doesProjectNameExist, 
         addProject, getProjects, getProjectByName} from './project.js';
 import { TodoFactory } from './todo.js';
 
 const homeButton = document.querySelector('.sidebar-home');
+const todayButton = document.querySelector('.sidebar-today');
+const weekButton = document.querySelector('.sidebar-week');
 const sidebarButton = document.querySelector('.sidebar-collapse-button');
 const sidebar = document.querySelector('.sidebar');
 const todoListContainer = document.querySelector('.todo-list-container');
@@ -15,9 +17,29 @@ function handleButtons(){
         sidebar.classList.toggle('sidebar-show');
     });
     homeButton.addEventListener('click', () => {
+        clearContainer(todoListContainer);
         getProjects().forEach((project) => {
             project.todoList.forEach((todo) => {
-                handleTodo(todo);
+                displayTodo(todo);
+            })
+        })
+    })
+    todayButton.addEventListener('click', () => {
+        clearContainer(todoListContainer)
+        getProjects().forEach((project) => {
+            project.todoList.forEach((todo) => {
+                if(isToday(todo.dueDate))
+                    displayTodo(todo);
+            })
+        })
+    })
+    weekButton.addEventListener('click', () => {
+        const startDate = subDays(new Date(), 8); // start date of last 7 days
+        clearContainer(todoListContainer);
+        getProjects().forEach((project) => {
+            project.todoList.forEach((todo) => {
+                if(isWithinInterval(todo.dueDate, {start: startDate, end: new Date()}))
+                    displayTodo(todo);
             })
         })
     })
@@ -46,11 +68,11 @@ function projectHandler(project){
 function handleProjectTodos(project){
     clearContainer(todoListContainer);
     project.todoList.forEach(todo => {
-        handleTodo(todo, project);
+        displayTodo(todo, project);
     });
 }
 
-function handleTodo(todo, project){
+function displayTodo(todo, project){
     const todoContainer = document.createElement('div');
     todoContainer.classList.add('todo-container');
     const leftDiv = document.createElement('div');
@@ -111,13 +133,17 @@ function handleModal(){
         modal.classList.add('visible');
     });
   
-    cancelButton.addEventListener('click', () => {
-        modal.classList.remove('visible');
-    });
   
     form.addEventListener('submit', (event) => {
         event.preventDefault();
+        console.log('aye');
         handleInput();
+        modal.classList.remove('visible');
+    });
+
+    cancelButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('hi');
         modal.classList.remove('visible');
     });
 };
