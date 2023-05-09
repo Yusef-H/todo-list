@@ -11,39 +11,7 @@ const sidebar = document.querySelector('.sidebar');
 const todoListContainer = document.querySelector('.todo-list-container');
 const projectsContainer = document.querySelector('.sidebar-user-projects');
 
-handleButtons();
-function handleButtons(){
-    sidebarButton.addEventListener('click', () => {
-        sidebar.classList.toggle('sidebar-show');
-    });
-    homeButton.addEventListener('click', () => {
-        clearContainer(todoListContainer);
-        getProjects().forEach((project) => {
-            project.todoList.forEach((todo) => {
-                displayTodo(todo);
-            })
-        })
-    })
-    todayButton.addEventListener('click', () => {
-        clearContainer(todoListContainer)
-        getProjects().forEach((project) => {
-            project.todoList.forEach((todo) => {
-                if(isToday(todo.dueDate))
-                    displayTodo(todo);
-            })
-        })
-    })
-    weekButton.addEventListener('click', () => {
-        const startDate = subDays(new Date(), 8); // start date of last 7 days
-        clearContainer(todoListContainer);
-        getProjects().forEach((project) => {
-            project.todoList.forEach((todo) => {
-                if(isWithinInterval(todo.dueDate, {start: startDate, end: new Date()}))
-                    displayTodo(todo);
-            })
-        })
-    })
-}
+
 
 function renderProjects(projects){
     clearContainer(projectsContainer);
@@ -55,24 +23,38 @@ function renderProjects(projects){
 function projectHandler(project){
     const projectButton = document.createElement('button');
     projectButton.innerHTML = project.projectName;
-    handleProjectTodos(project);
+    clearContainer(todoListContainer);
+    displayProjectTodos(project);
 
     projectButton.addEventListener('click', () => {
-        handleProjectTodos(project);
+        displayProjectTodos(project);
     })
     projectsContainer.appendChild(projectButton);
 
 }
 
 
-function handleProjectTodos(project){
-    clearContainer(todoListContainer);
+function displayProjectTodos(project, checkToday, checkWeek){
     project.todoList.forEach(todo => {
-        displayTodo(todo, project);
+        if(checkToday){
+            if(isToday(todo.dueDate))
+                displayTodo(todo, project);
+        }
+        else if(checkWeek){
+            const startDate = subDays(new Date(), 8); // start date last 7 days
+            if(isWithinInterval(todo.dueDate, {start: startDate, end: new Date()}))
+                    displayTodo(todo);
+        }
+
     });
 }
 
 function displayTodo(todo, project){
+    const todoContainer = createTodo();
+    todoListContainer.appendChild(todoContainer);
+}
+
+function createTodo(){
     const todoContainer = document.createElement('div');
     todoContainer.classList.add('todo-container');
     const leftDiv = document.createElement('div');
@@ -81,8 +63,6 @@ function displayTodo(todo, project){
     const title = document.createElement("h3");
     title.classList.add('todo-title');
     const date = document.createElement("h3");
-    
-    
 
     checkBox.setAttribute("type", "checkbox");
     title.innerHTML = todo.title;
@@ -97,7 +77,7 @@ function displayTodo(todo, project){
 
     todoContainer.appendChild(leftDiv);
     todoContainer.appendChild(rightDiv);
-    todoListContainer.appendChild(todoContainer);
+
 }
 
 function createDeleteButton(){
@@ -113,7 +93,7 @@ function handleDeleteEvent(deleteButton, project){
             e.preventDefault();
             const todoTitle = deleteButton.closest(".todo-container").querySelector(".todo-title").innerHTML;
             project.deleteTodo(todoTitle);
-            handleProjectTodos(project);
+            displayProjectTodos(project);
         })
 }
 
@@ -136,14 +116,12 @@ function handleModal(){
   
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        console.log('aye');
         handleInput();
         modal.classList.remove('visible');
     });
 
     cancelButton.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('hi');
         modal.classList.remove('visible');
     });
 };
@@ -166,9 +144,36 @@ function handleInput(){
     }
 
     renderProjects(getProjects());
-    handleProjectTodos(project);
+    displayProjectTodos(project);
 }
 
+
+function handleButtons(){
+    sidebarButton.addEventListener('click', () => {
+        sidebar.classList.toggle('sidebar-show');
+    });
+    homeButton.addEventListener('click', () => {
+        clearContainer(todoListContainer);
+        getProjects().forEach((project) => {
+            displayProjectTodos(project);
+        })
+    })
+    todayButton.addEventListener('click', () => {
+        clearContainer(todoListContainer)
+        getProjects().forEach((project) => {
+            displayProjectTodos(project, true);
+        })
+    })
+    weekButton.addEventListener('click', () => {
+        
+        clearContainer(todoListContainer);
+        getProjects().forEach((project) => {
+            displayProjectTodos(project, false, true);
+        })
+    })
+}
+
+handleButtons();
 handleModal();
 
 
