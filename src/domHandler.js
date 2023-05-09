@@ -15,7 +15,11 @@ function handleButtons(){
         sidebar.classList.toggle('sidebar-show');
     });
     homeButton.addEventListener('click', () => {
-        /* add display all todos functionality */
+        getProjects().forEach((project) => {
+            project.todoList.forEach((todo) => {
+                handleTodo(todo);
+            })
+        })
     })
 }
 
